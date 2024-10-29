@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:midterm/pages/staff_bottom_nav.dart';
+import 'package:midterm/staff/staff_editRoomInfo.dart';
 import 'package:midterm/staff/staff_logout.dart';
 
 enum RoomStatus { free, reserved, pending, disabled }
@@ -12,7 +14,14 @@ class StaffBrowseRoomList extends StatefulWidget {
 }
 
 class _StaffBrowseRoomListState extends State<StaffBrowseRoomList> {
+  int _selectedIndex = 0;
   final TextEditingController _searchController = TextEditingController();
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   Color _getStatusColor(RoomStatus status) {
     switch (status) {
@@ -126,21 +135,55 @@ class _StaffBrowseRoomListState extends State<StaffBrowseRoomList> {
             Expanded(
               child: ListView(
                 children: [
-                  _buildRoomCard('Room 1', '8 People', 'Free Wifi',
-                      'assets/images/room1.png'),
-                  _buildRoomCard('Room 2', '10 People', 'Free Wifi',
-                      'assets/images/room2.png'),
-                  _buildRoomCard('Room 3', '4 People', 'Free Wifi',
-                      'assets/images/room3.png'),
-                  _buildRoomCard('Room 4', '6 People', 'Free Wifi',
-                      'assets/images/room4.png'),
-                  _buildRoomCard('Room 5', '12 People', 'Free Wifi',
-                      'assets/images/room5.png'),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditRoomScreen())),
+                    child: _buildRoomCard('Room 1', '8 People', 'Free Wifi',
+                        'assets/images/room1.png'),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditRoomScreen())),
+                    child: _buildRoomCard('Room 2', '10 People', 'Free Wifi',
+                        'assets/images/room2.png'),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditRoomScreen())),
+                    child: _buildRoomCard('Room 3', '4 People', 'Free Wifi',
+                        'assets/images/room3.png'),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditRoomScreen())),
+                    child: _buildRoomCard('Room 4', '6 People', 'Free Wifi',
+                        'assets/images/room4.png'),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditRoomScreen())),
+                    child: _buildRoomCard('Room 5', '12 People', 'Free Wifi',
+                        'assets/images/room5.png'),
+                  ),
                 ],
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

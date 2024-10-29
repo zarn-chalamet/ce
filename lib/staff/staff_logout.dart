@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:midterm/auth/Signin.dart';
+import 'package:midterm/pages/staff_bottom_nav.dart';
 
 class StaffLogout extends StatefulWidget {
   const StaffLogout({super.key});
@@ -135,6 +137,10 @@ class _StaffLogoutState extends State<StaffLogout> {
                 OutlinedButton(
                   onPressed: () {
                     // Logout function
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignInScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -157,31 +163,9 @@ class _StaffLogoutState extends State<StaffLogout> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: '',
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Color(0xFFF9F9F9), // light background color
+      bottomNavigationBar: CustomBottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

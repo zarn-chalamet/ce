@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:midterm/auth/Signup.dart';
-import 'package:midterm/pages/bottomNav.dart';
+import 'package:midterm/staff/staff_browse_room_list.dart';
 import 'package:midterm/staff/staff_logout.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -161,7 +161,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const BottomNav()),
+                                builder: (context) =>
+                                    const StaffBrowseRoomList()),
                           );
                         } else if (_idController.text == 'approver' &&
                             _passwordController.text == '3333') {

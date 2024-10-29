@@ -2,19 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: EditRoomScreen(),
-    );
-  }
-}
+import 'package:midterm/staff/staff_browse_room_list.dart';
 
 class EditRoomScreen extends StatefulWidget {
   @override
@@ -22,9 +10,12 @@ class EditRoomScreen extends StatefulWidget {
 }
 
 class _EditRoomScreenState extends State<EditRoomScreen> {
-  final TextEditingController roomNameController = TextEditingController(text: 'Room 1');
-  final TextEditingController peopleController = TextEditingController(text: '8');
-  final TextEditingController wifiController = TextEditingController(text: 'Free');
+  final TextEditingController roomNameController =
+      TextEditingController(text: 'Room 1');
+  final TextEditingController peopleController =
+      TextEditingController(text: '8');
+  final TextEditingController wifiController =
+      TextEditingController(text: 'Free');
 
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
@@ -52,7 +43,8 @@ class _EditRoomScreenState extends State<EditRoomScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Edit Room Information', style: TextStyle(color: Colors.black)),
+        title: const Text('Edit Room Information',
+            style: TextStyle(color: Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -193,6 +185,10 @@ class _EditRoomScreenState extends State<EditRoomScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Save function
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StaffBrowseRoomList()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -212,6 +208,10 @@ class _EditRoomScreenState extends State<EditRoomScreen> {
                   child: OutlinedButton(
                     onPressed: () {
                       // Cancel function
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StaffBrowseRoomList()));
                     },
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),

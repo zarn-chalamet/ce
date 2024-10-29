@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:midterm/pages/staff_bottom_nav.dart';
 import 'package:midterm/staff/staff_addNewRoom.dart';
 import 'package:midterm/staff/staff_logout.dart';
 
@@ -8,6 +9,7 @@ class RoomBookingScreen extends StatefulWidget {
 }
 
 class _RoomBookingScreenState extends State<RoomBookingScreen> {
+  int _selectedIndex = 1;
   // Initial status for each room and slot
   Map<String, List<String>> roomStatuses = {
     'Room 1': ['Free', 'Free', 'Free', 'Free'],
@@ -15,6 +17,12 @@ class _RoomBookingScreenState extends State<RoomBookingScreen> {
     'Room 3': ['Reserved', 'Free', 'Free', 'Disabled'],
     'Room 4': ['Reserved', 'Free', 'Free', 'Free'],
   };
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   // Function to update room status
   void updateRoomStatus(String roomName, int index, String newStatus) {
@@ -134,6 +142,10 @@ class _RoomBookingScreenState extends State<RoomBookingScreen> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CustomBottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:midterm/pages/staff_bottom_nav.dart';
 import 'package:midterm/staff/staff_logout.dart';
 
 enum RoomApprovalStatus { approved, rejected }
@@ -12,6 +13,7 @@ class StaffHistory extends StatefulWidget {
 }
 
 class _StaffHistoryState extends State<StaffHistory> {
+  int _selectedIndex = 2;
   DateTime? _selectedDate; // Added to manage selected date
   final String userRole = 'Staff';
 
@@ -22,6 +24,12 @@ class _StaffHistoryState extends State<StaffHistory> {
   void _clearFilter() {
     setState(() {
       _selectedDate = null; // Clear the selected date
+    });
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
     });
   }
 
@@ -158,6 +166,10 @@ class _StaffHistoryState extends State<StaffHistory> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: CustomBottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
